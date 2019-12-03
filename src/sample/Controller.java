@@ -3,6 +3,7 @@ package sample;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.media.Media;
@@ -30,6 +31,9 @@ public class Controller {
     ImageView imageViewCenter = new ImageView();
     @FXML
     ImageView imageViewBottom = new ImageView();
+
+    @FXML
+    Label mistakeRatioLabel = new Label();
 
     /**
      * Событие для открытия видео
@@ -96,12 +100,14 @@ public class Controller {
         imageViewBottom.setImage(screenShoots.get(screenShoots.size() - 1));
 
         double time = mp.getCurrentTime().toSeconds();
-        File file = new File(".\\Screenshoots\\" + time + ".png");
+        File file = new File(".\\Screenshots\\" + time + ".png");
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
         } catch (IOException e) {
             // TODO: handle exception here
         }
+
+        mistakeRatioLabel.setText("87 / 100");
     }
 }
 
